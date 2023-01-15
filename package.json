@@ -23,16 +23,17 @@
     "setup": "rimraf database/migrations/*; npm run schema:drop;npm run migrations:generate init;npm run migrations:run;npm run seeds:run",
     "migrations:run": "npm run typeorm migration:run -- -d ./typeOrm.config.ts",
     "migrations:generate": "npm run typeorm -- -d ./typeOrm.config.ts migration:generate ./db/migrations/$npm_config_name",
-    "migrations:create": "npm run typeorm -- migration:create ./migrations/$npm_config_name",
+    "migrations:create": "npm run typeorm -- migration:create ./db/migrations/$npm_config_name",
     "migrations:revert": "npm run typeorm -- -d ./typeOrm.config.ts migration:revert",
-    "seeds:create": "npm run typeorm -- migration:create -c seed -n",
-    "seeds:run": "npm run typeorm -- migration:run -c seed",
-    "schema:drop": "npm run typeorm -- schema:drop -c connection"
+    "schema:drop": "npm run typeorm -- schema:drop -c connection",
+    "seeds:run": "npm run typeorm -- -d ./typeOrm.config.ts migration:generate ./db/seeds/$npm_config_name",
+    "seeds:create": "npm run typeorm -- migration:create ./db/seeds/$npm_config_name",
+    "seeds:revert": "npm run typeorm -- -d ./typeOrm.config.ts migration:revert"
   },
   "dependencies": {
-    "@nestjs/common": "^9.0.0",
+    "@nestjs/common": "^9.2.1",
     "@nestjs/config": "^2.2.0",
-    "@nestjs/core": "^9.0.0",
+    "@nestjs/core": "^9.2.1",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
     "pg": "^8.8.0",
