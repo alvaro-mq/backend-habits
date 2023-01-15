@@ -2,13 +2,12 @@ import { AbstractEntity } from '../common/dto/abstract-entity.dto';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Status } from '../common/enums/status.enum';
 
-const enumStatus = [
+export const StatusEnum = [
   Status.CREATE,
   Status.PENDING,
   Status.ACTIVE,
   Status.INACTIVE,
 ];
-
 @Entity()
 export class User extends AbstractEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -23,6 +22,6 @@ export class User extends AbstractEntity {
   @Column({ nullable: true })
   email: string;
 
-  @Column({ type: 'enum', enum: enumStatus, default: Status.CREATE })
+  @Column({ type: 'enum', enum: StatusEnum, default: Status.CREATE })
   status: string;
 }
