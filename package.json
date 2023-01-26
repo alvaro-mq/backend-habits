@@ -26,7 +26,7 @@
     "migration:revert": "npm run typeorm -- --dataSource=src/database/data-source.ts migration:revert",
     "migration:create": "npm run typeorm -- migration:create ./db/migrations/$npm_config_name",
     "seed:run": "ts-node -r tsconfig-paths/register ./src/database/seeds/run-seed.ts",
-    "schema:drop": "npm run typeorm -- schema:drop -c connection",
+    "schema:drop": "npm run typeorm -- schema:drop -c connection"
   },
   "dependencies": {
     "@nestjs/common": "^9.2.1",
@@ -39,7 +39,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "typeorm": "^0.3.10"
+    "typeorm": "^0.3.10",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.1.4",

@@ -1,6 +1,7 @@
-import { AbstractEntity } from '../common/dto/abstract-entity.dto';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Status } from '../common/enums/status.enum';
+import { AbstractEntity } from '../../common/dto/abstract-entity.dto';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Status } from '../../common/enums/status.enum';
+import { Role } from './role.entity';
 
 export const StatusEnum = [
   Status.CREATE,
@@ -8,6 +9,7 @@ export const StatusEnum = [
   Status.ACTIVE,
   Status.INACTIVE,
 ];
+
 @Entity()
 export class User extends AbstractEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -24,4 +26,9 @@ export class User extends AbstractEntity {
 
   @Column({ type: 'enum', enum: StatusEnum, default: Status.CREATE })
   status: string;
+
+  @ManyToOne(() => Role, {
+    eager: true,
+  })
+  role?: Role | null;
 }
